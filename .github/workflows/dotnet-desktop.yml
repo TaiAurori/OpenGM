@@ -22,13 +22,10 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Build
-      run: dotnet build
-      
-    - name: Zip artifact for deployment
-      run: zip release.zip ./OpenGM/bin/* -r -9
+      run: dotnet publish -r win-x64
       
     - name: Archive binaries
       uses: actions/upload-artifact@v4
       with:
-        name: release.zip
-        path: release.zip
+        name: release-win-x64
+        path: ./OpenGM/bin/win-x64/publish/*
