@@ -23,3 +23,12 @@ jobs:
 
     - name: Build
       run: dotnet build
+      
+    - name: Zip artifact for deployment
+      run: zip release.zip ./OpenGM/bin/* -r -9
+      
+    - name: Archive binaries
+      uses: actions/upload-artifact@v4
+      with:
+        name: release.zip
+        path: release.zip
